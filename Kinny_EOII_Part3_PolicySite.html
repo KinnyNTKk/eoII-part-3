@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOII Part 3 · 時事政策深析 — Kinny NG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A14;--surface:#111121;--surface2:#18182A;--border:rgba(255,255,255,.07);--text:#E2E8F0;--muted:#64748B;--tc:#3B82F6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Serif TC',Georgia,serif;min-height:100vh;line-height:1.7}
+a{text-decoration:none;color:inherit}
+
+/* ── NOISE OVERLAY ── */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.018;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px}
+
+/* ── LAYOUT ── */
+.container{max-width:860px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+/* ── HOME PAGE ── */
+#home{padding:48px 0 64px}
+.home-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:12px}
+.home-title{font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.2;color:#F1F5F9;letter-spacing:-1px;margin-bottom:12px}
+.home-title span{color:var(--tc)}
+.home-sub{font-size:15px;color:#94A3B8;margin-bottom:40px;max-width:580px;line-height:1.7}
+.topics-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.topic-card{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 22px;transition:all .22s;border-left:3px solid var(--tc);cursor:pointer}
+.topic-card:hover{background:var(--surface2);border-color:var(--tc);transform:translateX(4px);box-shadow:0 8px 32px rgba(0,0,0,.35)}
+.tc-emoji{font-size:26px;flex-shrink:0;width:42px;text-align:center}
+.tc-body{flex:1;min-width:0}
+.tc-label{font-size:16px;font-weight:700;color:#F1F5F9;margin-bottom:3px}
+.tc-tag{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tc-arrow{color:var(--tc);font-size:18px;flex-shrink:0;opacity:.7}
+
+/* ── TOPIC PAGE ── */
+.topic-page{padding:32px 0 64px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:8px 16px;color:#94A3B8;font-size:12px;font-family:'DM Mono',monospace;cursor:pointer;margin-bottom:28px;transition:all .18s}
+.back-btn:hover{background:rgba(255,255,255,.09);color:#fff}
+.tp-hero{display:flex;align-items:flex-start;gap:20px;margin-bottom:36px;padding:28px;background:linear-gradient(135deg,var(--surface),var(--bg));border-radius:20px;border:1px solid rgba(255,255,255,.06);border-left:4px solid var(--tc)}
+.tp-emoji{font-size:44px;flex-shrink:0;line-height:1}
+.tp-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--tc);text-transform:uppercase;margin-bottom:6px;opacity:.8}
+.tp-title{font-size:clamp(22px,4vw,32px);font-weight:900;color:#F1F5F9;letter-spacing:-0.5px;margin-bottom:6px}
+.tp-sub{font-size:13px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:.2px}
+
+/* ── CONTENT SECTIONS ── */
+.tp-content{display:flex;flex-direction:column;gap:28px}
+.tp-section{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 30px}
+.sec-title{font-size:13px;font-family:'DM Mono',monospace;letter-spacing:2px;color:var(--tc);text-transform:uppercase;margin-bottom:18px;font-weight:500;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06)}
+.tp-section p{font-size:14.5px;line-height:1.9;color:#CBD5E1;margin-bottom:14px}
+.tp-section p:last-child{margin-bottom:0}
+.tp-section p strong{color:#E2E8F0;font-weight:700}
+.tp-section ul{margin:8px 0 14px 0;padding-left:0;list-style:none}
+.tp-section ul li{font-size:14px;line-height:1.85;color:#CBD5E1;padding:10px 14px 10px 36px;position:relative;border-radius:8px;margin-bottom:6px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.04)}
+.tp-section ul li::before{content:'→';position:absolute;left:12px;color:var(--tc);font-weight:700}
+.tp-section ul li strong{color:#E2E8F0}
+
+/* ── STAKEHOLDERS TABLE ── */
+.sk-table{width:100%;border-collapse:collapse}
+.sk-table tbody tr{border-bottom:1px solid rgba(255,255,255,.04)}
+.sk-table tbody tr:last-child{border-bottom:none}
+.sk-name{padding:12px 16px 12px 0;font-size:13px;font-weight:700;color:#E2E8F0;vertical-align:top;width:38%;line-height:1.5}
+.sk-role{padding:12px 0;font-size:13px;color:#94A3B8;line-height:1.7}
+
+/* ── POLICY ITEMS ── */
+.pol-item{padding:14px 16px;border-radius:10px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);margin-bottom:10px;border-left:3px solid var(--tc)}
+.pol-item:last-child{margin-bottom:0}
+.pol-name{font-size:13px;font-weight:700;color:#E2E8F0;margin-bottom:5px}
+.pol-desc{font-size:13px;color:#94A3B8;line-height:1.75}
+
+/* ── QUOTES ── */
+.quote-block{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:20px 22px;margin-bottom:14px;border-left:3px solid var(--tc)}
+.quote-block:last-child{margin-bottom:0}
+.qt{font-size:14px;line-height:1.85;color:#CBD5E1;font-style:italic;margin-bottom:10px}
+.quote-block footer{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace}
+.qt-src{opacity:.7;font-weight:400}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .tp-hero{flex-direction:column;gap:12px;padding:20px}
+  .tp-section{padding:20px 18px}
+  .sk-table{display:block}
+  .sk-table tbody{display:block}
+  .sk-table tr{display:block;margin-bottom:12px;background:rgba(255,255,255,.02);border-radius:8px;padding:10px;border:1px solid rgba(255,255,255,.05)}
+  .sk-name{display:block;width:100%;padding:0 0 4px 0}
+  .sk-role{display:block;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- HOME PAGE -->
+  <div id="home">
+    <div class="home-eyebrow">EOII Interview Prep · Part 3</div>
+    <h1 class="home-title">時事政策<span>深析</span></h1>
+    <p class="home-sub">針對行政主任（EOII）面試第三部分，深度分析10個核心時事議題的現況、持份者、政策、評析與建議，助你在面試中展示全面嘅政策分析能力。</p>
+    <div class="topics-grid">
+        <a href="#" class="topic-card" onclick="showTopic('housing')" style="--tc:#3B82F6">
+          <div class="tc-emoji">🏠</div>
+          <div class="tc-body">
+            <div class="tc-label">房屋政策</div>
+            <div class="tc-tag">公屋輪候、簡約公屋、劏房規管與土地供應</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+        <a href="#" class="topic-card" onclick="showTopic('birthrate')" style="--tc:#EC4899">
+          <div class="tc-emoji">👶</div>
+          <div class="tc-body">
+            <div class="tc-label">低生育率</div>
+            <div class="tc-tag">總和生育率0.841、獎勵措施成效、晚婚與DINK文化</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+        <a href="#" class="topic-card" onclick="showTopic('ageing')" style="--tc:#F59E0B">
+          <div class="tc-emoji">👴</div>
+          <div class="tc-body">
+            <div class="tc-label">人口老化與安老政策</div>
+            <div class="tc-tag">2039年長者佔31%、居家安老、安老服務融資</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+        <a href="#" class="topic-card" onclick="showTopic('northern')" style="--tc:#8B5CF6">
+          <div class="tc-emoji">🏙️</div>
+          <div class="tc-body">
+            <div class="tc-label">北部都會區</div>
+            <div class="tc-tag">河套開園、新田科技城、創科驅動與內地融合</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+        <a href="#" class="topic-card" onclick="showTopic('medicalfee')" style="--tc:#EF4444">
+          <div class="tc-emoji">🏥</div>
+          <div class="tc-body">
+            <div class="tc-label">公營醫療收費改革</div>
+            <div class="tc-tag">2026年1月1日生效、急症室$400、全年封頂$10,000</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+        <a href="#" class="topic-card" onclick="showTopic('minwage')" style="--tc:#10B981">
+          <div class="tc-emoji">💰</div>
+          <div class="tc-body">
+            <div class="tc-label">最低工資</div>
+            <div class="tc-tag">$43.1/小時（2026年5月起）、年度審查、生活工資爭議</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+        <a href="#" class="topic-card" onclick="showTopic('ai')" style="--tc:#06B6D4">
+          <div class="tc-emoji">🤖</div>
+          <div class="tc-body">
+            <div class="tc-label">AI與數碼政府</div>
+            <div class="tc-tag">AI研發院、數智化轉型、香港的全球競爭力</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+        <a href="#" class="topic-card" onclick="showTopic('ridehailing')" style="--tc:#F97316">
+          <div class="tc-emoji">🚗</div>
+          <div class="tc-body">
+            <div class="tc-label">網約車合法化</div>
+            <div class="tc-tag">爭議11年、2025年完成立法、的士業衝擊</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+        <a href="#" class="topic-card" onclick="showTopic('budget2026')" style="--tc:#A855F7">
+          <div class="tc-emoji">📊</div>
+          <div class="tc-body">
+            <div class="tc-label">2026年財政預算案</div>
+            <div class="tc-tag">由虧轉盈$29億、印花稅收入大增、外匯基金轉撥$1,500億</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+        <a href="#" class="topic-card" onclick="showTopic('medmanpower')" style="--tc:#F43F5E">
+          <div class="tc-emoji">🩺</div>
+          <div class="tc-body">
+            <div class="tc-label">醫護人手短缺</div>
+            <div class="tc-tag">醫生每千人2.1名、第三所醫學院、海外醫生引進</div>
+          </div>
+          <div class="tc-arrow">→</div>
+        </a>
+    </div>
+  </div>
+
+  <!-- TOPIC PAGES -->
+  <div class="topic-page" id="page-housing" style="display:none;--tc:#3B82F6">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">🏠</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">房屋政策</h2>
+          <p class="tp-sub">公屋輪候、簡約公屋、劏房規管與土地供應</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>香港房屋問題長期困擾市民，是本屆政府施政的重中之重。截至2025年12月底，公屋綜合輪候時間為<strong>5.1年</strong>，較本屆政府上任時的<strong>6.1年</strong>高峰有所改善，但距政府設定的<strong>4.5年目標</strong>（2026/27年度前）仍有差距。一般公屋申請宗數約<strong>115,700宗</strong>，較歷史高峰156,400宗減少約26%。</p>
+<p>私人市場方面，房價雖自2021年高峰回落逾20%，惟整體置業負擔指數仍達收入中位數的<strong>13至15倍</strong>，遠高於國際可負擔水平（3至5倍）。劏房問題同樣嚴峻，全港估計有約<strong>107,400個</strong>分間單位，主要集中於深水埗、油尖旺及九龍城，居住環境惡劣。</p>
+<p>供應側，政府未來5年（2026/27至2030/31年度）目標興建約<strong>189,000個公營房屋單位</strong>，並計劃於未來十年準備約<strong>2,600公頃熟地</strong>。2026/27年賣地計劃推出9幅住宅地，連同鐵路及重建項目合共提供約<strong>22,000伙</strong>私人住宅，供應按年增約六成。未來三至四年一手私營住宅潛在供應量達<strong>104,000個</strong>。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">政府（房屋局、規劃署）</td><td class="sk-role">主要政策制定者，需平衡短期安置需求與長期土地規劃，同時面對財政壓力。</td></tr><tr><td class="sk-name">公屋輪候申請者</td><td class="sk-role">逾11萬宗一般申請，佔人口最大比例的受惠群體，盼縮短輪候時間。</td></tr><tr><td class="sk-name">劏房居民</td><td class="sk-role">約20萬人居住在分間單位，面對租金無保障、環境惡劣等問題，是最急需保護的弱勢群體。</td></tr><tr><td class="sk-name">業主及地產商</td><td class="sk-role">私人發展商主導私宅供應，業主則受政策影響其物業價值及出租權利。</td></tr><tr><td class="sk-name">房屋協會及房委會</td><td class="sk-role">負責資助出售房屋（居屋、綠置居）及公屋興建與管理的法定機構。</td></tr><tr><td class="sk-name">專業界別（城規師、建築師）</td><td class="sk-role">提供技術意見，倡議更合理的土地用途規劃。</td></tr><tr><td class="sk-name">社福機構及劏房關注組</td><td class="sk-role">代表基層居民發聲，監察政策落實及業主違規情況。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">簡約公屋計劃</div><div class="pol-desc">目標於2027/28年度前興建約30,000個簡約公屋單位，為輪候公屋人士提供過渡性居所，平均輪候3.2年，每年可節省租金逾$50,000。截至2025年底已落成約10,000個。</div></div><div class="pol-item"><div class="pol-name">《簡樸房條例》</div><div class="pol-desc">2026年3月1日生效，規定分間單位最低面積為86平方呎，並須符合採光、通風等基本要求，設有48個月過渡期，業主須申請認證。</div></div><div class="pol-item"><div class="pol-name">白居二擴容</div><div class="pol-desc">白居二配額增至7,000個，當中3,500個（一半）撥予40歲以下青年，協助青年置業。</div></div><div class="pol-item"><div class="pol-name">轉讓限制縮短</div><div class="pol-desc">新出售資助房屋轉讓限制由15年降至10年，提高市場流通性。</div></div><div class="pol-item"><div class="pol-name">居屋綠白表配額調整</div><div class="pol-desc">由40:60調至50:50，鼓勵更多公屋租戶購買居屋，騰空公屋單位。</div></div><div class="pol-item"><div class="pol-name">長者業主樓換樓計劃</div><div class="pol-desc">年滿60歲、持有單位10年以上的業主，可免補地價出售並購買較小或較偏遠單位，騰出市區大單位。</div></div><div class="pol-item"><div class="pol-name">家有初生優先配屋</div><div class="pol-desc">2024年4月1日起，有3歲或以下嬰兒的公屋申請家庭可縮短1年輪候時間，並優先選購居屋及綠置居。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>政府立場：</strong>政府強調已大幅提速建屋，本屆任期5年建屋目標較上屆增逾八成。行政長官李家超多次表示，房屋政策是「重中之重」，並以輪候時間由6.1年降至5.1年作為施政成果。</p>
+<p><strong>支持者觀點：</strong>建制派議員普遍支持政府增加供應的方向，認為簡約公屋是「雪中送炭」之舉，短期內可改善劏房居民生活。房地產業界則歡迎賣地計劃增加供應，認為有助平衡市場。</p>
+<p><strong>批評及反對聲音：</strong>民間倡議團體批評簡約公屋建設成本高昂（每伙造價逾$100萬），性價比存疑，並非長遠解決方案。社福機構如關注劏房平台指出，《簡樸房條例》的過渡期長達48個月，大量劏房居民需繼續忍受惡劣居住環境，保護力度不足。</p>
+<p><strong>學者意見：</strong>香港大學房地產及建設系教授指出，香港房屋問題的根源是供需嚴重失衡，加上土地行政程序複雜、從覓地到入伙往往需時10年以上，任何短期措施均難以根治問題。有學者建議加快修訂《城市規劃條例》，縮短規劃申請時間。</p>
+<p><strong>全球比較：</strong>新加坡組屋制度常被引用為參考，其約80%人口居住於政府資助房屋，並設有完善的翻新及資產增值機制。香港公屋覆蓋率約30%，差距明顯。然而，兩地土地面積、人口密度及歷史背景差異甚大，直接移植存在困難。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>加快土地行政流程：</strong>修訂《城市規劃條例》，縮短法定諮詢及上訴期，目標將覓地至入伙時間由現時10至15年壓縮至7至8年。</li>
+<li><strong>棕地優先發展：</strong>新界現有約1,600公頃棕地，加快收地及安置，可在無需大規模填海的情況下提供大量土地。</li>
+<li><strong>公私營協作增建公屋：</strong>引入私人發展商參與興建公營房屋，換取相應地積比率或容積率優惠，加快供應。</li>
+<li><strong>強化租務管制：</strong>研究對私人市場（尤其是劏房業主）推行更全面的租金管制，保護低收入租戶，同時研究租金補貼計劃。</li>
+<li><strong>大灣區房屋協作：</strong>研究在深圳、中山等大灣區城市為港人提供資助住宅選項，分流部分置業需求。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">我們的目標是讓每個市民都住得好、住得舒適。公屋輪候時間縮短是本屆政府的重要指標，我們會繼續努力。</p>
+          <footer><strong>李家超，行政長官</strong> <span class="qt-src">— 2025年施政報告發布會</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">簡約公屋是解決過渡期住房的好方法，但我們必須確保配套設施完善，讓居民有尊嚴地生活。</p>
+          <footer><strong>梁志祥，民建聯立法會議員</strong> <span class="qt-src">— 立法會房屋事務委員會</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">香港房屋問題的核心是結構性土地短缺，加上決策程序繁複，單靠增加某一類型的供應難以解決根本問題。</p>
+          <footer><strong>許智峯（港大房屋研究學者）</strong> <span class="qt-src">— 房屋政策論壇</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div><div class="topic-page" id="page-birthrate" style="display:none;--tc:#EC4899">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">👶</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">低生育率</h2>
+          <p class="tp-sub">總和生育率0.841、獎勵措施成效、晚婚與DINK文化</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>香港生育率問題已到達臨界點。2025年出生登記宗數僅<strong>31,714宗</strong>，為歷年新低，按年跌逾<strong>14%</strong>，較2015年（60,803宗）跌近<strong>五成</strong>。2024年總和生育率（TFR）為<strong>0.841</strong>，遠低於人口替代水平的<strong>2.1</strong>，並為全球最低之一（2022年更曾跌至0.701的歷史低位）。</p>
+<p>婚姻狀況同樣令人憂慮。2025年婚姻登記宗數約<strong>28,000對</strong>，較2018年（50,000對）下跌<strong>44%</strong>，晚婚趨勢持續。現時選擇「雙職無孩」（DINK，Double Income No Kids）的家庭比例達<strong>22%</strong>，創歷史新高。香港員工每週工時中位數高達<strong>50小時</strong>，生活成本高企——養育一名兒童至18歲的估算費用約<strong>$600萬</strong>——都是不生育的主要誘因。</p>
+<p>人口趨勢顯示，若生育率維持現水平，香港總人口將於2040年代開始收縮，勞動力萎縮、稅基收窄，對整體社會的可持續性構成長遠威脅。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">政府（社會福利署、勞工及福利局）</td><td class="sk-role">政策制定者，需在財政有限的情況下設計有效的生育鼓勵措施。</td></tr><tr><td class="sk-name">育兒家庭及準父母</td><td class="sk-role">直接受益群體，對政策效益最為敏感；生育決定受多重因素影響。</td></tr><tr><td class="sk-name">僱主及商界</td><td class="sk-role">提供或拒絕提供家庭友善措施的關鍵角色，文化影響甚深。</td></tr><tr><td class="sk-name">托育及幼教服務業</td><td class="sk-role">嬰幼兒照顧服務的供應者，質素及費用直接影響父母生育意願。</td></tr><tr><td class="sk-name">女性及性別平等倡議者</td><td class="sk-role">關注生育政策對女性職業發展的影響，警惕將生育責任過度加諸女性。</td></tr><tr><td class="sk-name">學術界及人口學家</td><td class="sk-role">提供數據分析及政策評估，研究生育率與社經因素的關係。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">新生嬰兒獎勵金</div><div class="pol-desc">2023年10月推出，每名新生嬰兒可獲$20,000一次性獎勵金。截至2025年底已發放約61,758名申請人，涉款約$12.35億。三年計劃。</div></div><div class="pol-item"><div class="pol-name">子女免稅額調高</div><div class="pol-desc">2026預算案將子女免稅額由$130,000增至$140,000，惠及約36萬名納稅人，每年減稅約$6.8億。</div></div><div class="pol-item"><div class="pol-name">基本免稅額調高</div><div class="pol-desc">由$132,000增至$145,000，惠及約209萬名納稅人，間接減輕育兒家庭負擔。</div></div><div class="pol-item"><div class="pol-name">家有初生優先選樓</div><div class="pol-desc">有3歲或以下嬰兒的家庭可優先選購居屋及綠置居，並在公屋申請中縮短1年輪候時間。</div></div><div class="pol-item"><div class="pol-name">托兒服務擴展</div><div class="pol-desc">政府持續增加資助托兒服務名額，並推行「鄰里支援幼兒照顧計劃」，支援家長靈活安排照顧。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>政策局限性：</strong>批評者普遍指出，$20,000現金獎勵對比養育成本$600萬，杯水車薪，難以改變生育決定。研究顯示，現金獎勵對生育率的影響十分有限，尤其在高收入、高教育水平的都市地區，效果幾乎可以忽略不計。新加坡和南韓均曾大規模發放生育獎金，效果亦有限。</p>
+<p><strong>結構性問題：</strong>香港低生育率的深層原因是多元的：房屋成本高昂（佔可支配收入比例遠高於其他城市）、工時文化令雙職家庭難以平衡工作與照顧責任、托兒服務不足且費用昂貴、以及年輕一代對婚育的價值觀轉變。只有現金援助而忽略結構性障礙，成效必然受限。</p>
+<p><strong>性別議題：</strong>女性主義學者及倡議團體指出，生育政策設計必須避免將育兒責任強加於女性。香港女性勞動參與率雖高，但職場上的「媽媽懲罰」（motherhood penalty）仍存在，女性往往因生育而犧牲職涯晉升機會。真正有效的生育政策，必須包括強制性共享育嬰假、企業家庭友善措施問責機制等配套。</p>
+<p><strong>南韓的警示：</strong>南韓自2006年至2023年花費約280兆韓圜（逾2,000億美元）於生育政策，TFR仍在2023年跌至0.72，為全球最低。這告訴政策制定者，在都市化、晚婚及個人主義文化的結構性趨勢面前，單靠財政誘因的效果十分有限。</p>
+<p><strong>大灣區視角：</strong>有意見認為，香港可利用大灣區的相對低生活成本，讓港人在大灣區生育及養育子女，再通過便利的跨境交通服務維持就業。然惟此需解決跨境子女醫療、教育及社會福利的跨境銜接問題。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>強制性父親育嬰假：</strong>立法規定父親可享有不少於10天的帶薪育嬰假，由政府提供補貼，減輕僱主負擔，促進育兒責任共擔。</li>
+<li><strong>企業家庭友善措施問責：</strong>設立「家庭友善僱主認證」制度，在政府採購及補貼中優先考慮獲認證的僱主，以市場機制推動企業轉型。</li>
+<li><strong>大幅擴展全日制資助托育服務：</strong>研究提供全面資助的0至3歲托兒服務，將費用壓至家庭月收入5%以下，參考北歐模式。</li>
+<li><strong>稅務誘因深化：</strong>仿效法國的家庭商數制度，以家庭成員人數計算稅務負擔，子女愈多稅務優惠愈大。</li>
+<li><strong>住房優先予有子女家庭：</strong>大幅擴大「家有初生」優先計劃，並研究為三孩家庭提供更大面積的資助房屋。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">我們深明香港的生育率問題需要多管齊下，預算案的稅務措施只是其中一環，還需要社會各界共同努力營造更有利生育的環境。</p>
+          <footer><strong>陳茂波，財政司司長</strong> <span class="qt-src">— 2026年財政預算案演辭</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">香港低生育率問題是一個複雜的社會現象，單靠金錢誘因難以逆轉趨勢，更重要的是改變香港工作文化，讓家庭生活與事業發展得以並行。</p>
+          <footer><strong>人口學家葉兆輝教授</strong> <span class="qt-src">— 香港大學社會工作及社會行政學系</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">有效的生育政策必須從女性視角出發，確保生育不會成為女性的職業代價，才能真正鼓勵女性願意生育。</p>
+          <footer><strong>婦女事務委員會</strong> <span class="qt-src">— 《香港生育政策研究報告》2024</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div><div class="topic-page" id="page-ageing" style="display:none;--tc:#F59E0B">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">👴</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">人口老化與安老政策</h2>
+          <p class="tp-sub">2039年長者佔31%、居家安老、安老服務融資</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>香港人口老化問題急劇惡化。截至2023年，65歲以上人口達<strong>157萬人</strong>，佔總人口<strong>21%</strong>。按目前趨勢，2039年長者比例將升至<strong>31%（約252萬人）</strong>。香港男性及女性平均壽命分別為<strong>82.8歲及88.2歲</strong>，為全球最高之一，但壽命延長亦意味著長期護理需求持續增加。</p>
+<p>人口結構失衡帶來嚴峻的財政挑戰。現時每名長者由約<strong>5名</strong>勞動人口供養，2041年將降至不足<strong>2名</strong>。預計2040年，老齡相關開支（醫療、安老服務、社會保障）將佔政府經常開支約<strong>55%</strong>，較現時約36%大幅攀升。香港長者勞動力參與率僅<strong>13.9%</strong>，遠低於內地（25%）及挪威（22.2%），反映退休後長者繼續參與勞動市場的空間甚大。</p>
+<p>安老服務供求嚴重失衡。資助安老院舍宿位的輪候時間平均逾<strong>3至4年</strong>，部分長者未能等到入住便離世。與此同時，<strong>逾96%</strong>長者表示希望居家安老，不願入住院舍，反映市民對「居家安老為本」政策方向的強烈期望。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">長者及其家庭照顧者</td><td class="sk-role">最直接受影響的群體，面對身心雙重壓力，需要多元化的支援服務。</td></tr><tr><td class="sk-name">勞工及福利局、社署</td><td class="sk-role">負責制定及落實安老服務政策，管理龐大的安老服務資助系統。</td></tr><tr><td class="sk-name">安老服務非政府機構</td><td class="sk-role">提供大量資助安老服務的前線機構，面對人手短缺及資金壓力。</td></tr><tr><td class="sk-name">私營安老院舍</td><td class="sk-role">佔安老院舍總數約六成，惟服務質素參差，缺乏有效監管機制。</td></tr><tr><td class="sk-name">醫管局</td><td class="sk-role">提供長者醫療服務，「老人科」及「復康科」需求急增。</td></tr><tr><td class="sk-name">退休員工代表及工會</td><td class="sk-role">倡議延遲退休年齡及退休保障政策，保障退休後的生活安全。</td></tr><tr><td class="sk-name">學術界及智庫</td><td class="sk-role">研究可持續的長期護理融資模式，如強制性護理保險。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">社區照顧服務券擴展</div><div class="pol-desc">2025施政報告將服務券增至16,000張（增加4,000張）；2026預算案將長者院舍券增至7,000張，讓長者可自選服務供應者，推動服務市場化。</div></div><div class="pol-item"><div class="pol-name">護老者支援計劃</div><div class="pol-desc">政府每年撥款$5億支援護老者，提供暫託服務、輔導及培訓，減輕家庭照顧者的壓力。</div></div><div class="pol-item"><div class="pol-name">新增資助安老院舍宿位</div><div class="pol-desc">2025施政報告新增700個資助安老院舍宿位，並新增3個長者鄰舍中心，每年服務約3,000名長者。</div></div><div class="pol-item"><div class="pol-name">長者醫療券獎勵計劃延長</div><div class="pol-desc">延長至2028年底，同年度在基層醫療使用$1,000醫療券，可獲額外$500獎勵，引導長者使用基層醫療服務。</div></div><div class="pol-item"><div class="pol-name">二元乘車優惠擴展</div><div class="pol-desc">2023年起擴展至60至64歲人士，受惠人數約607,500名，政府補貼約$22億/年。</div></div><div class="pol-item"><div class="pol-name">大灣區安老試驗計劃</div><div class="pol-desc">資助居港長者於大灣區部分安老院舍養老，提供更寬敞的居住環境及較低的生活成本。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>融資問題是核心挑戰：</strong>學界普遍指出，安老政策的最大挑戰是可持續的融資模式。現行以一般稅收支付長者福利的模式，在勞動人口不斷收縮的情況下，財政壓力將愈來愈大。日本、荷蘭、德國均已推行強制性長期護理保險（LTCI），由僱員、僱主及政府共同供款，建立獨立的安老護理基金。香港學者多次建議仿效此模式，惟政府至今未有積極回應。</p>
+<p><strong>居家安老vs院舍照顧：</strong>政府「居家安老為本，院舍照顧為輔」的方向獲廣泛認同，社區照顧服務券的擴展是正確的政策方向。然而，批評者指出，社區照顧服務的質素監管不足，市場上服務供應商良莠不齊；同時，部分獨居長者的社交孤立問題需要更全面的社區支援網絡，而非只是照顧服務。</p>
+<p><strong>大灣區安老：利弊並存：</strong>支持者認為，大灣區生活成本較低、環境較寬敞，是可以善用的資源。批評者則擔憂長者在大灣區養老後，可能無法享有香港的醫療及社會福利保障，並面對語言及文化隔閡。社福機構亦指出，家庭聯繫是長者身心健康的重要支柱，跨境安老可能加劇長者孤立。</p>
+<p><strong>退休年齡的爭議：</strong>香港現時並無法定退休年齡，但政府及公務員普遍以60歲或65歲為慣例退休年齡。學者建議提高退休年齡至70歲，配合延長壽命的現實，同時緩解勞動力短缺問題。然而，勞工界對此有保留，認為需先確保長者的就業保障，防止年齡歧視。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>推行強制性長期護理保險：</strong>參考德國及日本模式，設立獨立的護理保險基金，由僱員、僱主及政府三方供款，為長者提供穩定的護理資金。</li>
+<li><strong>訂立安老院舍最低服務標準：</strong>立法規定私營安老院舍的人手比例、服務質素及投訴處理機制，設立獨立監察機構。</li>
+<li><strong>推動「銀齡就業」：</strong>提供再培訓補貼，鼓勵60至70歲長者繼續工作，立法防止年齡歧視，釋放潛在勞動力。</li>
+<li><strong>建立跨部門「整合照顧模式」：</strong>整合醫療、社福、房屋三方資源，為高需要長者提供「一站式」支援，避免長者在不同系統之間的縫隙中流失。</li>
+<li><strong>加快安老院舍宿位增加速度：</strong>現時每年僅新增數百個宿位，遠不足以應付需求，應研究快速增建設施的方案，包括在舊式公共屋邨原址重建時同步增設安老院舍。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">我們致力推動居家安老，讓長者在熟悉的社區中安享晚年，同時確保有需要的長者可以獲得適切的院舍照顧。</p>
+          <footer><strong>李家超，行政長官</strong> <span class="qt-src">— 2025年施政報告</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">香港需要盡快就長期護理融資展開公眾諮詢，日本在1997年推行護理保險時已汲取寶貴經驗，香港不應再拖延。</p>
+          <footer><strong>陳章明教授，香港理工大學老年學研究中心</strong> <span class="qt-src">— 《香港安老政策評估》2024</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">社區照顧服務券制度是讓長者有更多選擇的重要工具，但要成功，必須同步提升服務質素監管，讓長者真正受惠。</p>
+          <footer><strong>安老事務委員會主席</strong> <span class="qt-src">— 安老事務委員會周年報告</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div><div class="topic-page" id="page-northern" style="display:none;--tc:#8B5CF6">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">🏙️</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">北部都會區</h2>
+          <p class="tp-sub">河套開園、新田科技城、創科驅動與內地融合</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>北部都會區（北都）是香港有史以來規模最大的城市發展計劃，覆蓋面積約<strong>3萬公頃</strong>，約佔香港土地面積三分之一，橫跨元朗及北區。北都的核心戰略是利用香港與深圳毗鄰的獨特優勢，打造「創新科技走廊」，與深圳前海、河套深港科技創新合作區協同發展，構建香港新的經濟增長引擎。</p>
+<p>2025年12月22日，<strong>河套香港園區</strong>正式開園，行政長官出席典禮，標誌著北都發展由規劃進入實質落地階段。河套園區是香港唯一與深圳直接接壤的科創地帶，具備「一地兩檢」試驗及監管創新的獨特條件，2026預算案為其注資<strong>$100億</strong>，目前出租率已達約八成。</p>
+<p>新田科技城規劃總面積<strong>626公頃</strong>，其中創科用地<strong>210公頃</strong>，相當於約17個香港科學園，長遠可提供超過<strong>30萬個</strong>科創及相關職位。首批居民預計於<strong>2031年</strong>遷入，整個發展完全落成後估計每年為GDP貢獻逾<strong>$2,500億</strong>。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">發展局、北都發展委員會</td><td class="sk-role">統籌北都各項發展計劃的主要政府架構，2025年施政報告成立「北都發展委員會」下設三個工作組。</td></tr><tr><td class="sk-name">科技公司及初創企業</td><td class="sk-role">北都的主要目標租戶及投資者，尤其是生命健康科技、微電子、新能源及AI四大支柱產業。</td></tr><tr><td class="sk-name">深圳市政府及內地科技企業</td><td class="sk-role">通過河套跨境合作，共建跨境科創生態圈的重要夥伴。</td></tr><tr><td class="sk-name">現有新界居民及農戶</td><td class="sk-role">部分需要遷置或土地徵收的受影響社區，其訴求需在發展過程中得到妥善處理。</td></tr><tr><td class="sk-name">港鐵公司（MTR）</td><td class="sk-role">北環線是北都的重要交通基礎設施，港鐵負責規劃及建設。</td></tr><tr><td class="sk-name">本地及海外大學</td><td class="sk-role">北都大學教育城預留約90公頃用地，將容納包括第三所醫學院在內的高等教育設施。</td></tr><tr><td class="sk-name">環保團體</td><td class="sk-role">關注北都發展對濕地、候鳥及生態多樣性的影響，尤其是后海灣拉姆薩爾濕地。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">河套香港園區開園</div><div class="pol-desc">2025年12月22日正式開園，提供生命健康科技、AI及新科技的研發空間，享有監管創新及跨境人員往來便利措施。</div></div><div class="pol-item"><div class="pol-name">新田科技城發展</div><div class="pol-desc">626公頃的發展計劃，創科用地210公頃，2026預算案注資$100億，同步興建住宅及配套設施，長遠提供50萬個住宅單位。</div></div><div class="pol-item"><div class="pol-name">外匯基金轉撥$1,500億</div><div class="pol-desc">2026預算案宣布未來兩個財政年度各轉撥$750億，撥入基本工程儲備基金，以支援北都及其他基建項目。</div></div><div class="pol-item"><div class="pol-name">北環線鐵路</div><div class="pol-desc">連接屯門至古洞的鐵路線，最遲2034年完成，是北都的重要交通命脈。</div></div><div class="pol-item"><div class="pol-name">沙嶺數據園區</div><div class="pol-desc">預留約10公頃，提供先進算力設施，已啟動市場招標，配合AI發展所需的龐大算力需求。</div></div><div class="pol-item"><div class="pol-name">大學教育城</div><div class="pol-desc">牛潭尾預留46公頃（含整個教育城約90公頃），包括第三所醫學院及綜合醫教研醫院。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>戰略意義：</strong>北都的重要性在於重塑香港的經濟版圖。過去數十年，香港的發展重心在港島及九龍，新界北部長期落後。北都計劃將為香港的創科及製造業（尤其是高技術製造）提供珍貴的空間，補足香港長期以服務業為主的經濟結構的不足。</p>
+<p><strong>批評聲音：</strong>有學者及城市規劃師指出，北都計劃規模龐大，但協調複雜，涉及多個政府部門、跨境監管、基建時序等問題，落實存在極大挑戰。財政方面，$1,500億的外匯基金轉撥加上未來幾年的債券發行，令香港的財政負擔大增，公眾對長遠債務可持續性有所憂慮。</p>
+<p><strong>環境爭議：</strong>環保團體強烈反對部分北都發展計劃對濕地的影響，特別是鄰近后海灣拉姆薩爾濕地的發展。政府強調已計劃在發展中保育及增加濕地面積，但爭議持續，並可能引發司法覆核，影響發展時程。</p>
+<p><strong>與深圳的競合關係：</strong>北都的成功在相當程度上取決於港深兩地能否真正達到政策協同，而非各自為政。歷史上，港深跨境合作的實際成效往往遜於預期，兩地在數據流通、醫療監管、法律制度等方面的差異，至今仍是跨境科創的主要障礙。</p>
+<p><strong>就業效益：</strong>政府估計北都完全落成後可提供超過30萬個職位，但批評者指出，這些職位能否留在香港，抑或只是將深圳的科技職位「延伸」至北都，值得關注。如何培訓本地人才以填補這些職位，是關鍵的配套挑戰。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>建立清晰的發展里程碑及問責機制：</strong>北都計劃時間跨度達20至30年，建議設立獨立的發展進度監察機構，定期向立法會和公眾匯報。</li>
+<li><strong>優化人才引進配套：</strong>針對河套及新田科技城吸引的科技人才，提供住房快速通道、子女教育優先配額等配套，確保人才願意扎根北都。</li>
+<li><strong>加強與現有居民的溝通及補償安排：</strong>受徵地影響的原居民及農戶，應獲得公平及充裕的補償和安置，避免社區矛盾。</li>
+<li><strong>推動「監管沙盒」安排：</strong>在河套香港園區推行更大膽的監管創新，如允許跨境數據流動試驗、允許AI醫療產品在港深兩地同步審批，加快科技商業化。</li>
+<li><strong>加快北環線建設進度：</strong>鐵路是北都發展的先決條件，應將最遲2034年的通車目標提前，並加快研究相關支線。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">北部都會區是香港歷史上最大型的發展項目，它將改變香港的面貌，為年輕一代創造新機遇，並進一步鞏固香港在大灣區的獨特地位。</p>
+          <footer><strong>李家超，行政長官</strong> <span class="qt-src">— 河套香港園區開園典禮，2025年12月</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">北都的潛力是巨大的，但落實的速度和質素同樣重要。我們要確保有足夠的人才、基建和監管配套，才能真正發揮其應有的作用。</p>
+          <footer><strong>葉劉淑儀，新民黨主席</strong> <span class="qt-src">— 立法會大會發言</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">北部都會區的發展願景，是建立一個宜居宜業，並且充滿活力的都市，讓市民在優美的環境中生活，同時享有豐富的就業機會和便捷的交通連繫。</p>
+          <footer><strong>規劃署，《北部都會區行動綱領》</strong> <span class="qt-src">— 2024年文件</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div><div class="topic-page" id="page-medicalfee" style="display:none;--tc:#EF4444">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">🏥</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">公營醫療收費改革</h2>
+          <p class="tp-sub">2026年1月1日生效、急症室$400、全年封頂$10,000</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>香港公營醫療體系長期面臨資源嚴重不足的問題。政府以龐大補貼維持低廉的公營醫療費用，令公營系統承受遠超負荷的服務需求。現時公營醫療的資助率高達<strong>97.6%</strong>，即政府承擔了市民使用公營醫療費用的97.6%，遠超其他公營醫療發達的地區（如英國NHS約為85至90%）。</p>
+<p>此現象導致公私營嚴重失衡：公院約<strong>四成醫生</strong>（6,500名）照顧全港近<strong>九成</strong>的病人，醫護人員工作量長期超負荷，導致流失率居高不下。穩定新症輪候時間最長達<strong>180星期（約3年半）</strong>，公立醫院有約<strong>28,000張病床</strong>，仍嚴重不足。</p>
+<p>上一次公營醫療收費調整在<strong>2017年</strong>，相隔<strong>9年</strong>後，政府於<strong>2026年1月1日</strong>推行新一輪收費改革，目標在五年內將資助率由97.6%降至<strong>90%</strong>，並以全年<strong>$10,000封頂</strong>的機制保護市民免受天文數字的醫療費用衝擊。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">醫務衞生局及醫管局</td><td class="sk-role">制定及執行醫療收費政策，需平衡財政可持續性與市民負擔能力。</td></tr><tr><td class="sk-name">一般市民（尤其是長者及低收入人士）</td><td class="sk-role">最直接受收費調整影響的群體，政府以寬免機制保護弱勢群體。</td></tr><tr><td class="sk-name">醫護人員及工會</td><td class="sk-role">關注收費調整能否有效改善人手不足及工作環境問題，所得收入如何再投入公營系統。</td></tr><tr><td class="sk-name">私營醫療機構及保險公司</td><td class="sk-role">收費調整或促使更多市民轉向私家醫生，間接影響私營市場需求。</td></tr><tr><td class="sk-name">社福機構及基層醫療倡議者</td><td class="sk-role">監察收費改革對基層市民的影響，確保低收入者不受阻礙使用醫療服務。</td></tr><tr><td class="sk-name">立法會衞生事務委員會</td><td class="sk-role">監督政策落實，收集公眾意見，審議相關法例修訂。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">急症室收費調整</div><div class="pol-desc">第三至五類急症室病人費用由$180升至$400；第一類（危殆）及第二類（危急）病人繼續豁免費用，確保緊急病人不受影響。</div></div><div class="pol-item"><div class="pol-name">普通科及專科門診調整</div><div class="pol-desc">普通科門診由$50增至$150（加幅三倍）；專科門診劃一為$250（原首次$135/覆診$80）。</div></div><div class="pol-item"><div class="pol-name">住院費調整</div><div class="pol-desc">急症病床日費由$12增至$300，加幅達25倍，為幅度最大的調整。</div></div><div class="pol-item"><div class="pol-name">全年醫療費用封頂</div><div class="pol-desc">設立每年$10,000上限，適用於所有香港居民，毋須經濟審查，大幅擴大保障範圍。</div></div><div class="pol-item"><div class="pol-name">擴大減免受惠人數</div><div class="pol-desc">醫療費用減免受惠人數由30萬大幅增至140萬，擴大約三倍。</div></div><div class="pol-item"><div class="pol-name">MRI新收費</div><div class="pol-desc">磁力共振掃描收費訂為$500，新增用戶自付部分。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>政府立場：</strong>政府強調改革的核心原則是「所有收入全數投放回公營醫療」，改革並非為了節省開支，而是調整公私分擔比例，令公營資源可以更集中服務真正有需要的病人。衞生局局長盧寵茂表示，現行超低費用令部分市民以公院作為基層醫療的「免費通道」，浪費了本應留給重症病人的資源。</p>
+<p><strong>支持聲音：</strong>醫學界部分人士支持改革方向，認為收費調整配合$10,000封頂機制，可在保護弱勢的同時，引導有能力的市民使用私家醫生作基層醫療，釋放公院容量，有助縮短輪候時間。商界認為「使用者付費」原則合理，有助提升資源效率。</p>
+<p><strong>批評及反對聲音：</strong>社福機構及部分政黨批評，住院日費增幅達25倍過於急進，對長者及慢性病患者造成沉重負擔。公民黨（現已解散）及部分社福界人士曾要求政府提高減免門檻或延緩實施。勞工界亦指出，許多基層工人雖然並非綜援受助人，但也難以承擔調高後的費用，「夾心階層」的保護不足。</p>
+<p><strong>制度困境：</strong>公私失衡問題的根源之一，是公私診金差距過大（公院專科$80至$135，私家專科可達$1,000至$3,000以上），令有能力付費者亦傾向使用公院。今次調整縮小了差距，但仍遠不足以達致平衡，私家醫生的費用透明度及規管亦需同步改善。</p>
+<p><strong>長期可持續性：</strong>即使成功將資助率由97.6%降至90%，公營醫療的財政壓力仍龐大，且隨著人口老化將持續加劇。學者指出，香港需要更根本的醫療融資改革，如強制性醫療保險制度，而非單靠調整收費。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>強化基層醫療以分流公院壓力：</strong>大幅增加社區健康中心數量及全科醫生名額，讓「慢病共治計劃」真正成為分流的中流砥柱，從根源減少急症室濫用。</li>
+<li><strong>設立「電子轉介系統」：</strong>由家庭醫生電子轉介至公院，非緊急個案無轉介信不獲優先輪候，以制度引導合理使用資源。</li>
+<li><strong>研究強制性醫療保險：</strong>參考台灣全民健保制度，由僱員及僱主共同供款，建立更可持續的醫療融資模式，減少對政府一般稅收的依賴。</li>
+<li><strong>提高費用透明度：</strong>立法規定私家醫生、診所及醫院公開收費，讓市民可以比較，促進公私市場合理競爭。</li>
+<li><strong>加快培訓更多醫護人才：</strong>收費改革的最終目的是改善服務，若醫護人手問題不解決，減少的「濫用」所騰出的容量，仍難以消化真正的需求。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">今次收費調整並非削減對市民的支援，全部收入將用於提升公營醫療服務；$10,000封頂機制確保任何人都不會因費用而放棄治療。</p>
+          <footer><strong>盧寵茂，醫務衞生局局長</strong> <span class="qt-src">— 醫療收費調整記者會，2025年</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">我們支持調整收費方向，但希望政府確保所有額外收入確實用於改善公院人手及設施，讓市民感受到實質改善。</p>
+          <footer><strong>香港醫學會</strong> <span class="qt-src">— 醫學會聲明</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">我們關注低收入家庭在新收費制度下的負擔，政府應確保減免機制盡快讓有需要市民受惠，申請程序應盡量簡化。</p>
+          <footer><strong>關愛基金督導委員會</strong> <span class="qt-src">— 關愛基金報告</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div><div class="topic-page" id="page-minwage" style="display:none;--tc:#10B981">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">💰</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">最低工資</h2>
+          <p class="tp-sub">$43.1/小時（2026年5月起）、年度審查、生活工資爭議</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>香港法定最低工資（SMW）自<strong>2011年5月1日</strong>首次實施（$28/小時），至今已歷15年，水平由$28逐步調升至現行的<strong>$42.1/小時</strong>（2025年5月1日起），即增幅約53.9%。2026年5月1日起，最低工資進一步調升至<strong>$43.1/小時</strong>，加幅<strong>2.38%</strong>。</p>
+<p>2025年完成的制度改革是近年最重要的轉變：審查機制由<strong>兩年一檢改為一年一檢</strong>，並採用「<strong>可加不減</strong>」原則，即根據通脹（CPI-A）加上經濟增長因素（上限1%）計算加幅，確保最低工資不會因單一年份的經濟波動而被削減。現時最低工資惠及約<strong>18萬名</strong>僱員。</p>
+<p>勞工界對現行水平並不滿意。樂施會估計，現行最低工資比綜援水平低約<strong>18.6%</strong>——即按最低工資全職工作的僱員，收入仍低於社會援助水平，引發「工窮」（working poor）的持續爭議。勞工界倡議的「<strong>生活工資</strong>」水平為<strong>$61.5/小時</strong>，較現行$43.1高出約43%。</p>
+<p>2026年1月1日起，連續性合約門檻由「418」改為「<strong>468</strong>」（即每4週工作68小時或以上），擴大僱員獲得更多法定福利（如年假、病假、遣散費）的保障範圍。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">低薪僱員及工會</td><td class="sk-role">最直接受益群體，要求最低工資真正反映生活成本，強調現行水平不足以維持基本生活。</td></tr><tr><td class="sk-name">商界及中小企業</td><td class="sk-role">最低工資的主要「付費者」，關注加薪對營運成本的影響，尤其是飲食、零售、清潔等勞動密集行業。</td></tr><tr><td class="sk-name">最低工資委員會</td><td class="sk-role">獨立法定機構，負責收集數據、參考多項因素後向政府提交建議水平。</td></tr><tr><td class="sk-name">勞工及福利局</td><td class="sk-role">制定及推行最低工資政策的政府部門。</td></tr><tr><td class="sk-name">社福機構及貧窮研究學者</td><td class="sk-role">監察最低工資對貧窮線的影響，倡議設立真正反映生活成本的「生活工資」。</td></tr><tr><td class="sk-name">外傭及豁免僱員</td><td class="sk-role">外籍家庭傭工不適用最低工資，其薪酬由獨立機制決定，但兩者爭議常被混淆。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">最低工資年度審查機制</div><div class="pol-desc">2025年完成立法，由兩年一檢改為一年一檢，採用「可加不減」原則，計算方程式為通脹（CPI-A）加上經濟增長因素（上限1%）。</div></div><div class="pol-item"><div class="pol-name">$43.1新水平（2026年5月1日）</div><div class="pol-desc">較現行$42.1增加$1，加幅2.38%，主要反映通脹因素。</div></div><div class="pol-item"><div class="pol-name">連續性合約「418」改「468」</div><div class="pol-desc">2026年1月1日起，每4週工作68小時或以上（原為每4週工作18小時或以上）的僱員，可享有連續性合約保障。</div></div><div class="pol-item"><div class="pol-name">薪俸稅退稅</div><div class="pol-desc">2026預算案提供薪俸稅退稅$3,000（上年$1,500），間接提升低收入納稅人可支配收入。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>「可加不減」機制的評估：</strong>「可加不減」原則是勞工界的長期訴求，確保最低工資具有自動追上通脹的機制。然而，批評者指出，計算方程式設定了1%的增長因素上限，實際上限制了最低工資在經濟高增長時的追升幅度，加幅的邊際效益有限，無法彌補與生活成本之間的結構性差距。</p>
+<p><strong>生活工資vs最低工資的爭論：</strong>樂施會等倡議組織長期推動以「生活工資」（living wage）取代「最低工資」作為政策目標。生活工資的概念是根據實際生活成本（包括住房、食物、交通、教育等）計算工人維持基本尊嚴生活所需的最低薪酬，而非僅僅防止惡性剝削。$61.5的建議生活工資較現行最低工資高43%，商界認為此幅度過高，會衝擊中小企業，並導致裁員及物價上漲。</p>
+<p><strong>對經濟的影響：</strong>香港大學及中文大學的研究顯示，歷次最低工資調整對整體失業率的影響溫和，未出現預期中的大規模裁員，但在某些行業（如清潔、保安）確實影響了就業增長。然而，對於低技術勞動市場的深層影響，學界仍有分歧。</p>
+<p><strong>工時問題：</strong>香港缺乏標準工時立法，全球主要城市中屬於少數。即使最低工資達標，工時過長（香港僱員平均週工時全球最高之一）的問題令實際時薪在扣除超時後可能低於表面水平。勞工界多次要求訂立標準工時，但商界強烈反對，政府至今未有立法。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>研究訂立「生活工資」目標：</strong>委託獨立研究機構制定反映實際生活成本的「生活工資」基準，並訂立在若干年內達標的政策路線圖。</li>
+<li><strong>推行標準工時立法：</strong>訂立每週最高工時上限，配合最低工資保障，確保僱員的實際收入與官方時薪相符。</li>
+<li><strong>強化勞工執法：</strong>增加勞工處的執法資源，加強對最低工資違規的調查及檢控，確保政策落實。</li>
+<li><strong>稅務支持低收入家庭：</strong>研究設立「勞動所得稅收抵免」（EITC）制度，為低收入全職工人提供稅務補貼，補充最低工資的保障。</li>
+<li><strong>加強對中小企的支援：</strong>若進一步大幅調升最低工資，政府可考慮為小微企提供過渡性補貼或税務優惠，降低衝擊。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">一年一檢的新機制確保最低工資能夠更緊貼實際情況，『可加不減』原則充分保障僱員的利益。</p>
+          <footer><strong>孫玉菡，勞工及福利局局長</strong> <span class="qt-src">— 最低工資新機制立法通過後聲明</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">商界理解工人的訴求，但最低工資的調整必須考慮香港的整體競爭力及中小企的實際承受能力，過急的調升幅度可能對就業造成負面影響。</p>
+          <footer><strong>香港總商會</strong> <span class="qt-src">— 商會聲明</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">現行最低工資水平連綜援都不如，全職工作仍然貧窮的情況在香港是不能接受的現實。政府必須認真考慮生活工資，以勞動尊嚴作為政策目標。</p>
+          <footer><strong>樂施會香港</strong> <span class="qt-src">— 《香港最低工資政策評估》2025年</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div><div class="topic-page" id="page-ai" style="display:none;--tc:#06B6D4">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">🤖</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">AI與數碼政府</h2>
+          <p class="tp-sub">AI研發院、數智化轉型、香港的全球競爭力</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>全球人工智能競賽白熱化，香港正積極搶佔有利位置。在人才方面，香港2025年IMD世界人才排名全球<strong>第4位</strong>，為亞洲之冠；在「人均AI人才密度」方面，全球排名約<strong>第3位</strong>，僅次於新加坡及瑞士。香港科技園匯聚超過<strong>500間AI公司</strong>及<strong>5,000多名技術人才</strong>；全港設有超過<strong>3,300間單一家族辦公室</strong>，反映財富管理及金融科技的龐大資本池。</p>
+<p>數碼政府方面，香港2024年IMD世界數碼競爭力排名全球<strong>第7位</strong>，亞太區<strong>第3位</strong>。政府內部數碼化程度參差，部分部門仍依賴紙本流程，「一站通」等數碼服務覆蓋率有限。政府設立「<strong>AI效能提升組</strong>」，負責推動各政府部門引入AI工具，提升行政效率。</p>
+<p>基礎設施方面，數碼港AI超算中心已於<strong>2024年12月</strong>完成首階段運作；沙嶺數據園區（約10公頃）已啟動市場招標，提供先進算力設施；2026預算案撥款<strong>$1億</strong>引入業界領先技術，加速政府數智化轉型。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">創新科技及工業局</td><td class="sk-role">主要政策制定部門，統籌香港AI發展策略及政府數智化工作。</td></tr><tr><td class="sk-name">數碼港及香港科技園</td><td class="sk-role">AI及科技初創的主要孵化及落戶平台，是政策落實的重要執行機構。</td></tr><tr><td class="sk-name">本地及跨國科技公司</td><td class="sk-role">AI生態圈的主要參與者，包括入駐香港的內地科技龍頭（如阿里巴巴、騰訊、百度）及國際巨頭（微軟、Google等）。</td></tr><tr><td class="sk-name">大學科研界</td><td class="sk-role">AI研發的重要力量，多所香港大學在機器學習、自然語言處理等領域具有國際水平。</td></tr><tr><td class="sk-name">一般市民及勞工界</td><td class="sk-role">AI自動化對就業的影響是公眾最關注的議題，基層工人面對的職位替代風險尤為突出。</td></tr><tr><td class="sk-name">金融監管當局（金管局、證監會）</td><td class="sk-role">監管金融科技及AI在金融行業的應用，如AI投資顧問、風險評估等。</td></tr><tr><td class="sk-name">私隱專員公署</td><td class="sk-role">監察AI應用中的個人資料私隱問題，是重要的監管者。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">香港人工智能研發院</div><div class="pol-desc">2026年成立，撥款$10億，為AI基礎研究及應用研究提供資助，推動產學研協作。</div></div><div class="pol-item"><div class="pol-name">前沿科技研究支援計劃</div><div class="pol-desc">撥款$30億，資助八大院校進行前沿科技研究，包括AI及相關領域。</div></div><div class="pol-item"><div class="pol-name">人工智能資助計劃</div><div class="pol-desc">另撥$30億，支撐大規模算力要求及AI應用，包括為企業提供算力補貼。</div></div><div class="pol-item"><div class="pol-name">AI效能提升組</div><div class="pol-desc">政府內部專責組，協調各政府部門引入AI工具，提升行政效率，目標包括減少文件處理時間及改善公共服務。</div></div><div class="pol-item"><div class="pol-name">數碼港AI超算中心</div><div class="pol-desc">2024年12月首階段投入運作，提供本地算力基礎設施，降低初創企業使用AI的成本門檻。</div></div><div class="pol-item"><div class="pol-name">政府數智化轉型計劃</div><div class="pol-desc">2026預算案撥款$1億，引入業界領先技術，加速政府內部數位化，包括推廣電子政務服務及AI輔助決策工具。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>香港的競爭優勢：</strong>香港在AI發展上具備幾項獨特優勢：高質量的學術人才（多所大學在AI領域躋身全球前100）、普通法法制提供的智慧產權保護、連接內地和國際市場的獨特橋樑地位、及龐大的金融服務生態圈（金融科技AI應用需求龐大）。</p>
+<p><strong>競爭挑戰：</strong>然而，香港面對來自新加坡、深圳及上海的激烈競爭。新加坡在AI監管沙盒、跨境數據流通及政府數碼化方面走得更快；深圳則有龐大的製造業基礎及與廣東省的政策協同，發展AI應用場景的優勢更大。香港的高租金及生活成本，令AI初創企業的營運成本偏高。</p>
+<p><strong>就業衝擊的憂慮：</strong>勞工界對AI自動化取代就業的憂慮日增。國際勞工組織（ILO）估計，全球約14%的工作面臨被AI高度自動化的風險，香港集中於金融、法律及行政職能的勞動市場結構，使白領工作同樣面臨威脅。政府的AI政策中，對就業轉型的配套（如再培訓計劃）著墨不多，被批評為政策失衡。</p>
+<p><strong>數據私隱與監管：</strong>AI大規模應用的最大挑戰之一是數據治理。香港的《個人資料（私隱）條例》（PDPO）相對陳舊，未能應對AI時代的個人資料保護需求，如演算法決策的透明度、模型訓練數據的合規性等。私隱專員公署已發布AI使用指引，但法律效力有限，業界呼籲立法更新。</p>
+<p><strong>「一國兩制」的AI監管優勢：</strong>香港在「一國兩制」下，可參照內地的龐大算力及數據優勢，同時維持與國際接軌的監管框架。這種「兩制」的AI監管試驗場定位，若能善加利用，可成為吸引全球AI企業的獨特賣點。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>更新《個人資料（私隱）條例》：</strong>引入AI特定的規範框架，包括演算法問責、數據最小化原則及AI決策的解釋權，與歐盟《AI法案》及國際標準接軌。</li>
+<li><strong>設立「AI就業轉型基金」：</strong>政府設立專項基金，為受AI取代影響的在職工人提供免費再培訓及就業支援，確保科技紅利惠及全民。</li>
+<li><strong>推動「AI政府服務沙盒」：</strong>選定特定政府服務（如社福申請審核、建築審批）進行AI輔助試驗，收集效果數據後再擴展，以實證推動轉型。</li>
+<li><strong>建立跨境AI合規互認機制：</strong>與深圳、新加坡推動AI監管互認，降低企業在多個司法管轄區合規的成本，吸引跨境AI應用在港落地。</li>
+<li><strong>增設AI教育課程：</strong>在中小學課程中全面引入AI素養教育，確保下一代具備與AI共存的能力，從教育層面解決長遠就業轉型問題。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">香港要在AI時代抓緊機遇，我們既有世界級的學術人才，又有國際化的法律及金融體系，加上連接內地的獨特優勢，香港成為全球AI樞紐的條件是具備的。</p>
+          <footer><strong>孫東，創新科技及工業局局長</strong> <span class="qt-src">— 2025年創科論壇</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">我們推行的『雙向AI策略』，一方面是以AI改造各個傳統行業，提升競爭力；另一方面是建立完整的AI產業生態圈，吸引人才和資本在港落根。</p>
+          <footer><strong>陳茂波，財政司司長</strong> <span class="qt-src">— 2026年財政預算案演辭</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">AI的廣泛應用為個人資料保護帶來前所未有的挑戰，市民有權知道其個人資料如何被用於AI訓練及決策，現行法例需要與時並進。</p>
+          <footer><strong>私隱專員鍾麗玲</strong> <span class="qt-src">— 私隱專員公署新聞稿，2025年</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div><div class="topic-page" id="page-ridehailing" style="display:none;--tc:#F97316">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">🚗</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">網約車合法化</h2>
+          <p class="tp-sub">爭議11年、2025年完成立法、的士業衝擊</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>網約車（ride-hailing）服務在香港的法律地位問題爭議超過<strong>11年</strong>，終於在<strong>2025年</strong>完成立法，結束長期的法律灰色地帶。在立法前，Uber等平台在香港以「共乘」形式運作，嚴格而言違反《道路交通條例》的「出租汽車許可證」規定，導致司機及平台多次被檢控，但執法力度不一。</p>
+<p>的士業界是最受影響的持份者。全港現有逾<strong>4萬名</strong>的士從業員，的士牌照歷史高峰價約<strong>$700萬</strong>，許多的士車主以牌照作為投資或退休保障。網約車合法化後，牌照價值預期大幅下跌，業界形容此為「奪命刀」，曾多次發動罷駛抗議。</p>
+<p>對乘客而言，網約車提供透明定價、GPS追蹤、評分機制及便捷的電子支付，與傳統的士服務相比，整體體驗普遍獲較高評價。交通政策層面，政府認為允許多元化的交通選項，符合「以科技改善民生」的施政方向。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">網約車平台（Uber、InDrive等）</td><td class="sk-role">直接受益者，合法化後可在透明的監管框架下正式運營，擴大市場規模。</td></tr><tr><td class="sk-name">的士業界及的士車主協會</td><td class="sk-role">最強烈的反對者，擔憂牌照價值下滑及市場份額被侵蝕，多次發動示威。</td></tr><tr><td class="sk-name">乘客及一般市民</td><td class="sk-role">受益於更多交通選擇及更透明的服務，支持合法化的聲音較大。</td></tr><tr><td class="sk-name">運輸及物流局</td><td class="sk-role">主要監管部門，需制定領牌制度、保險要求及執法機制。</td></tr><tr><td class="sk-name">運輸署</td><td class="sk-role">負責審批及管理網約車司機及平台的牌照申請。</td></tr><tr><td class="sk-name">保險業界</td><td class="sk-role">需為網約車提供適當的第三者保險產品，填補現有保險制度的空白。</td></tr><tr><td class="sk-name">網約車司機</td><td class="sk-role">享有更靈活的工作安排，但其勞工權益（如是否屬僱員或獨立承包商）在合法化後仍需釐清。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">網約車雙重領牌制度</div><div class="pol-desc">司機須通過品格審查及指定培訓課程；網約車平台須向運輸署領牌，並強制提供第三者保險，保障乘客安全。</div></div><div class="pol-item"><div class="pol-name">的士業轉型支援</div><div class="pol-desc">政府同步推出業界支援及培訓轉型措施，現有的士業者可申請成為認可網約車司機，以靈活方式適應市場轉變。</div></div><div class="pol-item"><div class="pol-name">投訴及評分機制</div><div class="pol-desc">平台須設立乘客評分及投訴機制，接受監管當局監察，確保服務質素。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>消費者視角：</strong>民調顯示，大多數市民支持網約車合法化，認為此舉有利增加交通選擇，並通過市場競爭倒逼的士業界提升服務質素。平台的透明定價及無現金支付，亦解決了多年來乘客對計程車拒載、繞道及拒絕找零等問題的投訴。</p>
+<p><strong>的士業的結構性困境：</strong>的士業界的反對聲音雖強烈，但深層問題在於香港的士業本身存在嚴重的結構性問題：司機老齡化（平均年齡逾50歲）、服務質素參差、缺乏數字化服務平台，使其難以在競爭中占有優勢。批評者認為，業界多年來依賴牌照壟斷而缺乏革新動力，合法化是遲來的市場開放。</p>
+<p><strong>勞工權益的隱憂：</strong>網約車司機的法律身份在全球各地均引發爭議。歐盟、英國法院已相繼裁定Uber司機屬僱員，享有最低工資、帶薪假期等勞工保障；但香港目前的立法架構下，網約車司機普遍被視為獨立承包商，不享有相關保障。勞工界關注此問題在香港的走向。</p>
+<p><strong>監管套利風險：</strong>部分法律學者指出，雙重領牌制度雖然嚴格，但執法難度高——當局難以實時監控是否有未領牌者從事網約車服務。參考其他地區的經驗，執法資源的配置是監管成效的關鍵。</p>
+<p><strong>市場集中度的隱憂：</strong>若Uber等平台主導市場後定價能力過大，長遠可能損害消費者利益。監管部門應保持對市場競爭狀況的監察，防止出現類似傳統的士牌照壟斷的另一種形式的市場壟斷。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>明確界定網約車司機的法律地位：</strong>立法釐清網約車司機是否屬「依賴性承包商」，賦予其部分勞工保障（如最低工資保障、工傷保障），平衡靈活工作與勞工權益。</li>
+<li><strong>設立「的士業轉型基金」：</strong>為願意轉型為網約車司機的的士業者提供培訓補貼及過渡性收入補貼，減輕衝擊。</li>
+<li><strong>推動的士業數字化：</strong>政府可資助的士業界建立統一的叫車App，提供與網約車平台相近的用戶體驗，加強競爭力。</li>
+<li><strong>監察市場競爭狀況：</strong>授權競爭事務委員會密切監察網約車市場的定價及競爭行為，防止壟斷。</li>
+<li><strong>研究共享出行生態：</strong>在網約車合法化的基礎上，進一步研究「共乘」（ride-sharing/carpooling）的監管框架，以科技進一步優化交通效率，減少路面車輛數目。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">網約車合法化後，市民將有更多交通選擇，政府會確保新的監管制度保障乘客安全及司機的合法利益。</p>
+          <footer><strong>林世雄，運輸及物流局局長</strong> <span class="qt-src">— 立法會運輸事務委員會</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">政府今次的決定令逾四萬名的士從業員的生計受到嚴重威脅，我們強烈要求政府提供足夠的補償及轉型支援，確保業界人士不被遺棄。</p>
+          <footer><strong>香港的士業議會</strong> <span class="qt-src">— 的士業界聲明</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">我們歡迎網約車合法化，長期以來消費者對的士服務的投訴持續高企，我們期望合法化後的競爭能有效提升整體交通服務質素。</p>
+          <footer><strong>消費者委員會</strong> <span class="qt-src">— 消費者委員會報告</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div><div class="topic-page" id="page-budget2026" style="display:none;--tc:#A855F7">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">📊</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">2026年財政預算案</h2>
+          <p class="tp-sub">由虧轉盈$29億、印花稅收入大增、外匯基金轉撥$1,500億</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>財政司司長陳茂波於<strong>2026年2月25日</strong>宣讀以「<strong>創科驅動、金融賦能；多元發展、關愛惠民</strong>」為主題的財政預算案，宣布2025-26年度預計綜合帳目錄得<strong>盈餘$29億</strong>，為<strong>2021-22年度以來首次錄得盈餘</strong>，扭轉連續數年的赤字局面。</p>
+<p>此次「由虧轉盈」的關鍵因素是股票及樓市交投暢旺，帶動印花稅收入大增<strong>72%至$995億</strong>，遠超預算（原預計約$580億）。與此同時，政府宣布將「創科種子基金」、「香港增長組合」等的收益約<strong>$620億</strong>回撥至一般收益帳，亦對盈餘有所貢獻。</p>
+<p>然而，底層財政結構的挑戰並未消失。地價收入僅$175億，較預期低<strong>17%</strong>；政府同期宣布未來兩個財政年度每年從外匯基金轉撥<strong>$750億（合共$1,500億）</strong>至基本工程儲備基金，以支援北都等龐大基建開支，並計劃每年發行<strong>$1,600億至$2,200億</strong>的政府債券，令公共財政在可見將來仍面對較大壓力。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">財政司司長辦公室及財經事務及庫務局</td><td class="sk-role">預算案的主要制定者，需平衡短期刺激需求與長遠財政健全。</td></tr><tr><td class="sk-name">一般納稅人及市民</td><td class="sk-role">直接受退稅、差餉寬免等「派糖」措施影響。</td></tr><tr><td class="sk-name">商界及投資者</td><td class="sk-role">關注稅率調整、營商環境及政府財政健康對市場信心的影響。</td></tr><tr><td class="sk-name">低收入群體及綜援受助人</td><td class="sk-role">關注社會保障措施是否足夠，以及通脹對購買力的影響。</td></tr><tr><td class="sk-name">評級機構（穆迪、標普、惠譽）</td><td class="sk-role">密切監察香港財政狀況，其評級直接影響香港的借貸成本。</td></tr><tr><td class="sk-name">立法會財務委員會</td><td class="sk-role">負責審議政府的撥款申請，是財政監察的重要機制。</td></tr><tr><td class="sk-name">債券投資者</td><td class="sk-role">隨著香港大幅增加債券發行，其風險評估對借貸成本至關重要。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">薪俸稅及利得稅退稅$3,000</div><div class="pol-desc">較上年$1,500加倍，惠及約209萬名納稅人，減稅總額約$54億。</div></div><div class="pol-item"><div class="pol-name">住宅差餉寬免</div><div class="pol-desc">首兩季每戶上限$500（較上年$250亦加倍）。</div></div><div class="pol-item"><div class="pol-name">社保金「雙糧」</div><div class="pol-desc">綜援、長者生活津貼、高齡津貼、傷殘津貼各發放額外1個月標準金額。</div></div><div class="pol-item"><div class="pol-name">基本及子女免稅額調高</div><div class="pol-desc">基本免稅額由$132,000增至$145,000；子女免稅額由$130,000增至$140,000。</div></div><div class="pol-item"><div class="pol-name">豪宅印花稅調高</div><div class="pol-desc">$1億以上住宅物業印花稅由4.25%調高至6.5%，追溯至2026年2月26日起生效。</div></div><div class="pol-item"><div class="pol-name">外匯基金轉撥$1,500億</div><div class="pol-desc">未來兩個財政年度各轉撥$750億至基本工程儲備基金，支援北都及其他基建。</div></div><div class="pol-item"><div class="pol-name">公務員編制削減</div><div class="pol-desc">每年削減2%公務員編制，預計累計削減約1萬個職位（2026-27及2027-28年度）。</div></div><div class="pol-item"><div class="pol-name">電動車首登記稅寬減終止</div><div class="pol-desc">2026年3月底屆滿後不再延續，取消對電動車的稅務優惠。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>「甜蜜的數字，苦澀的現實」：</strong>多位財政分析師及學者指出，$29億盈餘主要由印花稅收入「意外之喜」及一次性回撥帶動，並非源自政府財政結構的根本改善。地價收入持續偏低、資本工程開支大增，反映政府的「結構性赤字」問題——即排除非經常性收入後，政府的收支仍未達到平衡——實際上未有得到解決。</p>
+<p><strong>債務可持續性的爭論：</strong>預算案宣布每年債券發行額高達$1,600億至$2,200億，令香港未來幾年的債務大幅增加。政府強調未償還債務相對GDP比率約12%，仍屬「非常健康」水平，並低於AAA級政府的國際參考線（60至100%）。然而，惠譽及標普均表示，將密切關注香港的財政軌跡，若持續赤字或債務快速增加，不排除影響信用評級。</p>
+<p><strong>「派糖」的政治經濟學：</strong>批評者認為，預算案的退稅、差餉寬免等「派糖」措施成本高昂（逾$80億），但刺激效果有限，屬短期政治操作多於長遠政策。相比之下，政府在教育、醫療及社會投資方面的增幅相對有限，部分學者認為應將資源更有針對性地投放於長遠能力建設。</p>
+<p><strong>公務員削編的爭議：</strong>計劃每年削減2%公務員編制，被部分公務員工會批評為影響服務質素，尤其在醫療、社福等已嚴重短缺人手的部門，進一步削減編制令人憂慮。政府的立場是通過科技（AI）提升生產力，以較少人手提供同等服務。</p>
+<p><strong>印花稅依賴的隱憂：</strong>本年度印花稅收入高達$995億，佔總收入逾13%，是香港財政高度依賴資產市場的縮影。若股市或樓市出現逆轉，稅收將出現大幅落差，財政緩衝的重要性因此不應被忽視。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>制定中期財政整合計劃：</strong>政府應公佈清晰的5至10年財政路線圖，說明如何在承擔北都等大型開支的同時，維持財政可持續性，提升公眾信心及評級機構的信任。</li>
+<li><strong>擴闊稅基，減少對資產市場的依賴：</strong>研究引入薪酬稅以外的新型稅源（如土地增值稅、環境稅、徵收資本增值稅），以降低財政對印花稅及地價的依賴程度。</li>
+<li><strong>「派糖」資源更精準化：</strong>將退稅等一次性措施改為對低收入家庭的定向補助，提升財政支出的社會效益，而非廣泛「人人有份」。</li>
+<li><strong>公務員編制削減須配合服務水平監察：</strong>在推進編制優化的同時，訂立服務水平指標（SLA），確保「以科技代人手」確實落地，而非單純削減服務。</li>
+<li><strong>加強財政儲備管理透明度：</strong>定期發布外匯基金及財政儲備的運用報告，讓公眾清楚了解資金流向，提升施政透明度及問責性。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">今個財政年度是回顧過去、展望未來的轉捩點。盈餘$29億標誌著我們走出了疫後的財政困局，但我們必須保持審慎，繼續推動經濟多元化發展。</p>
+          <footer><strong>陳茂波，財政司司長</strong> <span class="qt-src">— 2026年財政預算案演辭</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">預算案盈餘的出現主要依賴市場表現，而非政府財政政策的根本轉變。若股市在下半年出現波動，全年盈餘能否維持仍有相當不確定性。</p>
+          <footer><strong>羅兵咸永道香港首席經濟師梁兆基</strong> <span class="qt-src">— 預算案反應評論，2026年2月</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">我們將繼續關注香港財政儲備的走勢，以及北都等大型基建項目的財務安排對公共財政的長遠影響，以決定是否調整香港的信用評級展望。</p>
+          <footer><strong>標準普爾評級機構</strong> <span class="qt-src">— 評級報告，2025年</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div><div class="topic-page" id="page-medmanpower" style="display:none;--tc:#F43F5E">
+      <button class="back-btn" onclick="showHome()">← 返回主頁</button>
+      <div class="tp-hero">
+        <div class="tp-emoji">🩺</div>
+        <div>
+          <div class="tp-eyebrow">EOII Part 3 · 時事分析</div>
+          <h2 class="tp-title">醫護人手短缺</h2>
+          <p class="tp-sub">醫生每千人2.1名、第三所醫學院、海外醫生引進</p>
+        </div>
+      </div>
+      <div class="tp-content">
+        <section class="tp-section">
+          <h3 class="sec-title">📍 現況分析</h3>
+          
+<p>香港醫護人手短缺問題被形容為「結構性危機」，是公營醫療系統長期積弱的根源之一。截至2023年，香港有約<strong>16,180名</strong>註冊醫生，每千人口僅<strong>2.1名</strong>，遠低於OECD平均的<strong>3.5名</strong>，亦低於新加坡（2.7名）、日本（2.7名）及韓國（2.6名）。世界衛生組織（WHO）建議每千人口最少應有<strong>3名</strong>醫生，香港遠未達標。</p>
+<p>人手短缺最為嚴峻的是公立醫院：約<strong>四成醫生</strong>（6,500名）照顧全港近<strong>九成</strong>的病人，公私嚴重失衡。近三年，公立醫院超過<strong>1,200名醫生</strong>及<strong>7,300名護士</strong>以非退休方式離職，醫生離職率曾高達<strong>7.6%</strong>，護士離職率達<strong>11%</strong>。醫護離職的主要原因包括：工作量過重、私家醫院薪酬吸引，以及部分人士移民離港。</p>
+<p>護士短缺問題比醫生更為嚴峻。預計2030年護士短缺達<strong>9,500名</strong>（差距需求比率17.1%），2040年若不加快培訓，仍缺約<strong>5,060名</strong>。部分病房的護士對病人比例已超出安全指引，直接影響護理質素及病人安全。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">👥 持份者</h3>
+          <table class="sk-table"><tbody><tr><td class="sk-name">醫院管理局（醫管局）</td><td class="sk-role">負責管理全港43間公立醫院及機構，是人手短缺最直接的承受者，需制定留人及招人策略。</td></tr><tr><td class="sk-name">醫務衞生局</td><td class="sk-role">制定醫療人手政策，包括引進海外醫生、增加本地培訓學額等。</td></tr><tr><td class="sk-name">兩所醫學院（港大及中大）</td><td class="sk-role">本地醫生培訓的唯一來源，學額長期偏緊，是人手短缺的結構性根源。</td></tr><tr><td class="sk-name">香港醫學會</td><td class="sk-role">代表本地醫生，對引進海外醫生政策有強烈立場，既關注質素，亦涉及業界競爭利益。</td></tr><tr><td class="sk-name">醫護工會（醫管局員工陣線等）</td><td class="sk-role">代表前線醫護人員，長期倡議改善公院工作條件、薪酬及人手比例。</td></tr><tr><td class="sk-name">護士學會及助產士學會</td><td class="sk-role">代表護士專業，關注護士短缺問題及職業發展路徑。</td></tr><tr><td class="sk-name">病人組織及關注組</td><td class="sk-role">從病人角度監察醫療質素，批評長輪候時間及人手不足對病人安全的威脅。</td></tr></tbody></table>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">📄 相關政策</h3>
+          <div class="pol-item"><div class="pol-name">特別註冊安排引進海外醫生</div><div class="pol-desc">2021年10月通過《醫生註冊（修訂）條例》，容許在香港認可醫學院名單以外、在指定海外醫學院取得資格的醫生，在香港公營機構工作而無須通過本地執照試。非本地培訓醫生在政府機構就業人數由2022年67名增至2023年底124名，近乎倍增。</div></div><div class="pol-item"><div class="pol-name">醫科培訓學額增加</div><div class="pol-desc">由2022/23年度的530個，逐步增至2024/25年度的590個，目標於2025/26年度達650個。</div></div><div class="pol-item"><div class="pol-name">第三所醫學院</div><div class="pol-desc">北都牛潭尾預留土地發展新醫學院及綜合醫教研醫院，預計可大幅增加本地醫生培訓量，惟落成時間未定。</div></div><div class="pol-item"><div class="pol-name">大灣區醫療人才交流計劃</div><div class="pol-desc">引入9名大灣區專科醫生及70名平均年資8年以上的護士，分派至九龍中、九龍西及新界西聯網。</div></div><div class="pol-item"><div class="pol-name">長者醫療券獎勵計劃</div><div class="pol-desc">引導長者使用私家基層醫療服務，間接減低對公院門診的需求，分流部分輕症病人。</div></div><div class="pol-item"><div class="pol-name">慢病共治計劃</div><div class="pol-desc">2023年底推出，讓高血壓及糖尿病患者在私家診所接受政府資助的跟進治療，分流約40萬名公院穩定病人至私家醫生。</div></div>
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">⚖️ 政策評析（支持與批評）</h3>
+          
+<p><strong>特別註冊安排的爭議：</strong>引進海外醫生的政策受到本地醫學界的強烈批評，香港醫學會反對過於寬鬆的引進安排，擔憂影響醫療質素及本地醫生利益。然而，公眾及病人組織普遍支持此政策，認為在人手嚴重不足的情況下，引進具備資格的海外醫生是必要之舉，質素監管可通過其他機制確保。立法至今，引進數量仍相對有限（約124名），遠未填補需求缺口。</p>
+<p><strong>治本vs治標：</strong>引進海外醫生及增加培訓學額均被視為「治標」之舉。學者指出，香港的醫護人手問題根源在於公私薪酬差距過大——公院醫生起薪點約$75,000至$90,000，私家醫院或私家診所的醫生收入可達數倍之多——令公院難以留才。真正的「治本」需要改善公院的薪酬、晉升及工作條件，才能從根本上解決流失問題。</p>
+<p><strong>護士問題更迫切：</strong>媒體及公眾焦點往往集中於醫生短缺，但護士短缺問題實際上更嚴峻（差距需求比率17.1%，遠高於醫生的5.4%）。護士的工作條件、薪酬水平及職業發展路徑改善，對緩解醫護危機同等重要，但政策資源投放相對不足。</p>
+<p><strong>大灣區人才的局限：</strong>引進大灣區醫護人才是一個補充方案，但面對若干挑戰：兩地醫療制度及藥物標準不同；大灣區醫護人才在港的執業認可問題較複雜；且大灣區自身也面臨人手需求增加的壓力。</p>
+<p><strong>第三所醫學院的長遠意義：</strong>北都第三所醫學院被視為解決人手問題的「長遠良方」，但預計正式招生最快需時10年以上，遠水不能救近火。批評者指出，政府應同時採取短期（引進人才、改善薪酬）和長期（第三所醫學院）的雙軌策略。</p>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💡 可能的改進建議</h3>
+          
+<ul>
+<li><strong>大幅改善公院薪酬及工作條件：</strong>系統性檢討公院醫護薪酬架構，縮小與私人市場的差距，並設定每個病房的最低人手比例，以法定標準保障護理質素。</li>
+<li><strong>加快第三所醫學院建設：</strong>確立明確的招生時間表，並研究提前在現有設施增設臨時學額，在新醫學院落成前盡量增加培訓供應。</li>
+<li><strong>擴大特別註冊安排的認可醫學院名單：</strong>擴展至更多國際知名醫學院，吸引更多海外港人醫生回流，同時維持質素審查機制。</li>
+<li><strong>推行「公院服務年」換取醫學貸款減免：</strong>設立醫學生獎學金計劃，條件是畢業後在公立醫院服務若干年（如5至7年），以此增加對公院的人才供應。</li>
+<li><strong>全面提升護士職業地位：</strong>擴大高級執業護士（APN）及護士診所的職能範圍，讓護士可獨立處理更多常見病症，既提升護士的工作滿足感，亦緩解醫生的壓力。</li>
+</ul>
+        
+        </section>
+        <section class="tp-section">
+          <h3 class="sec-title">💬 官方及評論員引述</h3>
+          <blockquote class="quote-block">
+          <p class="qt">我們明白醫護人手短缺是香港醫療體系面對的最根本挑戰，第三所醫學院是長遠解決方案，但我們同時需要短期的措施，包括引進海外醫生，才能應對當前的需求。</p>
+          <footer><strong>盧寵茂，醫務衞生局局長</strong> <span class="qt-src">— 立法會衞生事務委員會，2025年</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">公立醫院人手嚴峻問題的根源是薪酬和工作條件無法與私家醫院競爭，若不從根本上解決薪酬問題，任何引進或培訓計劃都只是治標。前線同事已到極限，政府必須正視。</p>
+          <footer><strong>醫管局員工陣線</strong> <span class="qt-src">— 醫管局員工陣線聲明</span></footer>
+        </blockquote><blockquote class="quote-block">
+          <p class="qt">我們支持增加本地醫科培訓學額，這是解決人手短缺的正確方向。對於引進海外醫生，我們強調必須確保資質審查嚴謹，病人安全不容妥協。</p>
+          <footer><strong>香港醫學會</strong> <span class="qt-src">— 醫學會立法會聲明</span></footer>
+        </blockquote>
+        </section>
+      </div>
+    </div>
+</div>
+
+<script>
+const TOPIC_IDS=["housing","birthrate","ageing","northern","medicalfee","minwage","ai","ridehailing","budget2026","medmanpower"];
+function showHome(){
+  document.getElementById('home').style.display='block';
+  TOPIC_IDS.forEach(id=>{document.getElementById('page-'+id).style.display='none';});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showTopic(id){
+  document.getElementById('home').style.display='none';
+  TOPIC_IDS.forEach(tid=>{document.getElementById('page-'+tid).style.display='none';});
+  document.getElementById('page-'+id).style.display='block';
+  // Set CSS variable for topic color
+  const page=document.getElementById('page-'+id);
+  document.querySelectorAll('.sec-title,.back-btn,.tp-eyebrow,.tc-arrow,.pol-item').forEach(el=>{el.style.setProperty('--tc',getComputedStyle(page).getPropertyValue('--tc'))});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+// Keyboard nav
+document.addEventListener('keydown',e=>{if(e.key==='Escape')showHome();});
+</script>
+</body>
+</html>
